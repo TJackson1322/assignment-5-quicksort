@@ -7,11 +7,13 @@ def partition(values, low, high):
     pivot = values[high]
     next_small = low
 
+    # Move each value at or below the pivot into the next open spot on the left.
     for current in range(low, high):
         if values[current] <= pivot:
             values[next_small], values[current] = values[current], values[next_small]
             next_small += 1
 
+    # Put the pivot in the open spot between the two groups and return its index.
     values[next_small], values[high] = values[high], values[next_small]
     return next_small
 
@@ -24,6 +26,8 @@ def quicksort(values, low, high, randomized=False):
 
         pivot_index = partition(values, low, high)
 
+        # Call Quicksort on the smaller side and loop over the larger side.
+        # This keeps the number of nested calls down.
         if pivot_index - low < high - pivot_index:
             quicksort(values, low, pivot_index - 1, randomized)
             low = pivot_index + 1
