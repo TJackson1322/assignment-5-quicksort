@@ -2,6 +2,8 @@ import random
 
 
 def partition(values, low, high):
+    # I use high to find the last spot in the part of the list I'm sorting.
+    # In my example, that spot holds 4, so 4 is my pivot.
     pivot = values[high]
     next_small = low
 
